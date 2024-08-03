@@ -1,3 +1,5 @@
+
+
 // import necessary functions from shared module
 import { isInJournal, getJournal, updateJournal, createMovieCard, debounce } from './shared.js';
 

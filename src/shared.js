@@ -1,3 +1,8 @@
+// import dayjs
+import  dayjs  from 'dayjs';
+
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 // journal management functions
 export function updateMovie(movie) {
     const journal = getJournal();
@@ -100,7 +105,7 @@ export function updateMovie(movie) {
     noteText.className = 'text-white';
     noteText.innerHTML = note.note;
   
-    dayjs.extend(dayjs_plugin_relativeTime);
+    dayjs.extend(relativeTime);
     const createdAt = dayjs(note.created_at);
     const createdAtEl = document.createElement('cite');
     createdAtEl.innerText = createdAt.fromNow();
@@ -137,13 +142,13 @@ export function updateMovie(movie) {
   // movie card creation
   export const createMovieCard = (movie, isDiary = false) => {
     const templateDiv = document.createElement('div');
-    templateDiv.classList.add('bg-gray-800', 'rounded-lg', 'overflow-hidden', 'shadow-lg', 'movie-card');
+    templateDiv.classList.add('bg-gray-800', 'rounded-lg', 'overflow-hidden', 'shadow-lg', 'movie-card', 'relative');
   
     const poster = document.createElement('img');
     poster.src = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://i.pinimg.com/originals/cd/23/c7/cd23c7a8d049049fd1b0ef281f0300cb.jpg";
-    poster.classList.add('movie-poster');
+    poster.classList.add('movie-poster', 'hover:opacity-65', 'transition', 'duration-300');
     poster.alt = movie.original_title;
   
     const contentDiv = document.createElement('div');
@@ -168,22 +173,58 @@ export function updateMovie(movie) {
     if (isInJournal(movie)) {
         if (isDiary) {
             const showNotesBtn = createButton('Notes', 'fa-note-sticky', () => showNotes(movie));
-            const removeFromDiaryBtn = createButton('Remove', 'fa-xmark', () => {
-                removeFromJournal(movie);
-                templateDiv.remove();
-            });
-            buttonContainer.append(showNotesBtn, removeFromDiaryBtn);
+           
+          
+            buttonContainer.append(showNotesBtn);
         }
     } else {
-        const addToDiaryBtn = createButton('Add to Diary', 'fa-bookmark', () => {
+/*  const addToDiaryBtn = createButton('Add to Diary', 'fa-bookmark', () => {
             addToJournal(movie);
-            addToDiaryBtn.remove();
-        });
-        buttonContainer.appendChild(addToDiaryBtn);
+            addToDiaryBtn.remove(); */
+        //});
+            
     }
+
+             const addToDiaryBtnSpan = document.createElement('span');        
+            const addToDiaryIcon = document.createElement('i');
+            addToDiaryIcon.classList.add('fa-regular', 'fa-heart', 'text-4xl');
+            addToDiaryBtnSpan.classList.add('cursor-pointer', 'absolute', 'top-3', 'right-3');
+
+            addToDiaryBtnSpan.addEventListener('click', () => {
+                addToJournal(movie);
+                addToDiaryBtnSpan.classList.add('hidden');
+                removeFromDiaryBtnSpan.classList.remove('hidden');
+              });
+
+            if (isInJournal(movie)) {
+              addToDiaryBtnSpan.classList.add('hidden');}
+
+              const removeFromDiaryBtnSpan = document.createElement('span'); 
+              const removeFromDiaryIcon = document.createElement('i');
+              removeFromDiaryBtnSpan.classList.add('cursor-pointer', 'absolute', 'top-3', 'right-3');
+            removeFromDiaryIcon.classList.add('fa-solid', 'fa-heart', 'text-4xl');
+            removeFromDiaryBtnSpan.addEventListener('click', () => {
+              
+                removeFromJournal(movie);
+                removeFromDiaryBtnSpan.classList.add('hidden');
+                addToDiaryBtnSpan.classList.remove('hidden');
+                if (isDiary) {
+                  templateDiv.remove();
+                }
+              });
+
+            if (!isInJournal(movie)) {
+              removeFromDiaryBtnSpan.classList.add('hidden');
+            }
+       addToDiaryBtnSpan.appendChild(addToDiaryIcon);
+       removeFromDiaryBtnSpan.appendChild(removeFromDiaryIcon);
+        templateDiv.appendChild(addToDiaryBtnSpan);
+        templateDiv.appendChild(removeFromDiaryBtnSpan);
   
     return templateDiv;
   };
+  
+
   
   function createButton(text, iconClass, onClick) {
     const button = document.createElement('button');
