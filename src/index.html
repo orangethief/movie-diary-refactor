@@ -5,9 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/src/main.css" rel="stylesheet">
 </head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+<body class="bg-gray-900 text-white">
+  <!-- header section -->
+  <header>
+    <nav class="container mx-auto flex justify-between items-center p-6">
+      <!-- logo with gradient text effect -->
+      <a href="./index.html"
+        class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">:\ALTschool</a>
+      <div class="space-x-4">
+        <!-- navigation links with hover effects -->
+        <a href="./index.html"
+          class="hidden sm:inline text-xl hover:text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 transition duration-300">Discover</a>
+        <a href="./journal.html"
+          class="text-xl hover:text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 transition duration-300">My
+          Diary</a>
+      </div>
+    </nav>
+    <!-- hero section -->
+    <div class="container mx-auto text-center py-20">
+      <!-- main heading with floating animation -->
+      <h1
+        class="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-b from-pink-500 to-cyan-200 floating">
+        ALTschool Movie Diary</h1>
+      <p class="text-2xl mb-12">Your personal journey through the world of cinema begins here.</p>
+      <!-- search input and button -->
+      <div class="flex items-center justify-center space-x-2 sm:space-x-4 max-w-3xl mx-auto px-6">
+        <input type="text" placeholder="Explore movies..." class="w-full bg-gray-800 text-white px-6 py-3 rounded" />
+        <button class="gradient-border w-14 sm:w-28 hover:text-slate-950 hover:animate-pulse">
+          <span class="gradient-border-span flex h-10 items-center justify-center">
+            <i class="fas fa-search mr-1"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- container for search results -->
+  <div id="grid-search-results" class="movie-grid"></div>
+
+  <!-- main content area -->
+  <main id="trendingDiv" class="container mx-auto py-20 px-4">
+    <h2 class="text-4xl font-bold mb-12 text-center">Trending Movies</h2>
+    <!-- grid for displaying movie cards -->
+    <div id="movie-card" class="movie-grid"></div>
+
+    <!-- pagination section -->
+    <div class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6 mt-8">
+      <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div>
+          <p class="text-sm text-white">
+            Showing
+            <span class="font-medium" id="currentPage"></span>
+            of
+            <span class="font-medium" id="maxPages"></span>
+            pages
+          </p>
+        </div>
+        <div class="pagination-container">
+          <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination" id="pagination">
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer section -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 ALTschool. Embark on your cinematic journey.</p>
+    </div>
+  </footer>
 </body>
 </html>

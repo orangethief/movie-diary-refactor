@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/main.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- header section -->
+    <header>
+      <nav class="container mx-auto flex justify-between items-center p-6">
+        <!-- logo with gradient text effect -->
+        <a href="./index.html"
+          class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">:\ALTschool</a>
+        <div class="space-x-4">
+          <!-- navigation links with hover effects -->
+          <a href="./index.html"
+            class="hidden sm:inline text-xl hover:text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 transition duration-300">Discover</a>
+          <a href="./journal.html"
+            class="text-xl hover:text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 transition duration-300">My
+            Diary</a>
+        </div>
+      </nav>
+      <!-- hero section -->
+      <div class="container mx-auto text-center py-20">
+        <!-- main heading with floating animation -->
+        <h1
+          class="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-b from-pink-500 to-cyan-200 floating">
+          Your Movie Diary</h1>
+        <!-- <p class="text-2xl mb-12">Your personal journey through the world of cinema begins here.</p> -->
+        <!-- search input and button -->
+        <div class="flex items-center justify-center space-x-2 sm:space-x-4 max-w-3xl mx-auto px-6">
+          <input type="text" placeholder="Explore movies..." class="w-full bg-gray-800 text-white px-6 py-3 rounded" id="searchDiaryInput" />
+          <button class="gradient-border w-14 sm:w-28 hover:text-slate-950 hover:animate-pulse">
+            <span class="gradient-border-span flex h-10 items-center justify-center">
+              <i class="fas fa-search mr-1"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+  
+    <!-- main content area -->
+    <main class="container mx-auto pb-20 px-4">
+      <!-- <h2 class="text-4xl font-bold mb-12 text-center">Your Movie Diary</h2> -->
+      <!-- movie grid container -->
+      <div id="movie-grid" class="movie-grid">
+        <!-- movie card template -->
+        <template id="movie-card">
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+            <img src="https://c8.alamy.com/comp/AX539P/dune-poster-for-1984-dino-de-laurentiis-film-with-sting-AX539P.jpg"
+              alt="Movie Poster" class="movie-poster" />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold mb-2 text-center truncate">DUNE</h3>
+              <p class="text-gray-400 mb-4 text-center">1984 | Science Fiction</p>
+              <button class="bg-red-500 h-10 w-full rounded-lg hover:bg-red-700">
+                <span class="flex items-center justify-center">
+                  <i class="fas fa-xmark mr-2"></i>Remove
+                </span>
+              </button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </main>
+  
+    <!-- footer section -->
+    <footer class="bg-gray-800 text-white py-10">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 ALTschool. Embark on your cinematic journey.</p>
+      </div>
+    </footer>
+  
+    <!-- modal for movie notes -->
+    <dialog id="modal" class="relative p-6 rounded-lg shadow-lg w-full max-w-2xl">
+      <button id="closeModalTop" class="absolute top-2 right-2 text-gray-400 hover:text-white transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <h2 id="movieTitle"
+        class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"></h2>
+  
+      <ul id="movieNotes" class="space-y-2 mb-4"></ul>
+  
+      <div class="mt-4">
+        <input type="text" id="new-note" name="new-note" placeholder="Enter your note..."
+          class="w-full bg-gray-700 text-white px-4 py-2 rounded-lg mb-2" required>
+        <button id="addNote">
+          Add note
+        </button>
+        <button id="closeModalBottom">
+          Close
+        </button>
+      </div>
+    </dialog>
+  
+    <!-- javascript file for journal functionality -->
+    <script src="./vendor/dayjs-1.11.12/dayjs.min.js"></script>
+    <script src="./vendor/dayjs-1.11.12/plugin/relativeTime.js"></script>
+    <script type="module" src="journal.js"></script>
+  </body>
+  </html>
