@@ -1,4 +1,4 @@
-import { API_KEY } from './config.js';
+import { API_KEY } from '../config.js';
 import { createMovieCard, debounce } from './shared.js';
 
 // get current page from URL parameters
